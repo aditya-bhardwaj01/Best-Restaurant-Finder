@@ -1,0 +1,270 @@
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App{
+  min-height: 100vh;
+}
+
+
+/* Navbar */
+.logo-image{
+  height: 50px;
+  width: 45px;
+  padding: 7px;
+}
+
+.light-mode{
+  color: black;
+  background-color: #EBF2FF;
+}
+
+.dark-mode{
+  color: white;
+  background-color: #1D1D1D;
+}
+
+.mode-toggler{
+  height: 30px;
+  width: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* Landing page */
+
+.top-landing{
+  margin: 50px 10px 10px 10px;
+  padding: 1em;
+}
+
+.top-left-landing, .top-right-landing{
+  /* border: solid red; */
+}
+
+.top-left-landing h1{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.top-left-landing p{
+  margin-top: 20px;
+  font-size: 16px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.to-home-from-landing{
+  margin-top: 30px;
+}
+
+.top-right-landing img{
+  border-radius: 10px;
+}
+
+
+.bottom-landing{
+  margin-top: 100px;
+}
+
+.first-count, .second-count{
+  text-align: center;
+}
+
+.bottom-landing p{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.bottom-landing-main img{
+  width: 70px;
+  height: 70px;
+}
+
+
+@media (max-width: 576px) {
+  .top-landing{
+    margin-top: 10px;
+    padding: 0.3em;
+  }
+  .top-right-landing{
+    margin-top: 1em;
+  }
+  .to-home-from-landing{
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .bottom-landing p{
+    font-size: 18px;
+  }
+  .bottom-landing-main img{
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .top-right-landing img{
+    height: 100%;
+  }
+}
+
+
+/* Home page */
+.Home{
+  /* border: solid red; */
+}
+
+/* ImageSlider CSS */
+/* .ImageSlider{
+  margin-top: 10px;
+}
+
+.slider{
+  position: relative;
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-slider{
+  width: 40em;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  font-size: 3rem;
+  color: black;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  font-size: 3rem;
+  color: black;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.slide{
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.08);
+}
+
+@media (max-width: 576px) {
+  .image-slider{
+    height: 200px;
+    width: 500px;
+  }
+} */
+
+.top-home{
+  background: url('./images/home-image.jpg');
+  background-size: cover;
+  background-position: center 40%;
+  height: 80vh;
+}
+
+.top-home-text-section{
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.box-top{
+  min-width: 420px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1em;
+  border-radius: 10px;
+}
+
+#search-type-boxes{
+  text-align: center;
+  color: white;
+  margin-top: 15px;
+}
+
+.search{
+  height: 35px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.bottom-home{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.looking-for{
+  padding: 1em 3em;
+}
+
+.looking-for img{
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
+  margin: 1em 3em;
+}
+
+.looking-for img:hover{
+  height: 70px;
+  width: 70px;
+  border-radius: 35px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.looking-for p:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 490) {
+  .box-top{
+    width: 100px;
+  }
+}
+
+/* Stats styling */
+.single-graph{
+  text-align: center;
+  height: 100vh;
+}
+.single-graph img{
+  background-color: white;
+  height: 75vh;
+  width: 110vh;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+.single-graph img:hover{
+  height: 80vh;
+  width: 115vh;
+  transition: 0.5s;
+}
+.single-graph h2{
+  font-family: 'Times New Roman', Times, serif;
+}
