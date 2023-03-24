@@ -12,7 +12,7 @@ class Navbar extends Component {
     }
 
     componentDidMount = () => {
-        console.log(this.props.page)
+        
     }
 
     render() {

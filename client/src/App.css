@@ -242,7 +242,7 @@ body{
   cursor: pointer;
 }
 
-@media (max-width: 490) {
+@media (max-width: 490px) {
   .box-top{
     width: 100px;
   }
@@ -252,11 +252,12 @@ body{
 .single-graph{
   text-align: center;
   height: 100vh;
+  padding: 2em;
 }
 .single-graph img{
   background-color: white;
   height: 75vh;
-  width: 110vh;
+  width: 700px;
   border-radius: 10px;
   transition: 0.5s;
 }
@@ -267,4 +268,51 @@ body{
 }
 .single-graph h2{
   font-family: 'Times New Roman', Times, serif;
+}
+
+.search-stats{
+  /* border: solid red; */
+  padding: 2em;
+  text-align: center;
+}
+.search-stats h3{
+  /* border: solid blue; */
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
+  'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.search-stats input{
+  /* border: solid green; */
+  margin-top: 2em;
+  height: 35px;
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 7px;
+  font-family: cursive;
+}
+#search-results{
+  font-family: cursive;
+  /* border: solid pink; */
+}
+.single-search-result{
+  text-align: left;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  margin: 1px;
+  cursor: pointer;
+  /* border: solid fuchsia; */
+}
+
+@media (max-width: 850px) {
+  .single-graph img{
+    height: 60vh;
+    width: 600px;
+  }
+}
+@media (max-width: 750px) {
+  .single-graph img{
+    height: 60vh;
+    width: 550px;
+  }
 }

@@ -23,24 +23,37 @@ class Stats extends Component {
         ["Most famous cuisines", topCuisines, "fade-down"], ["Top foodie areas in Bengaluru", topFoodieAreas, "fade-up"], 
         ["Ratio of Restaurants offering Book table to not offering Book table", bookTable, "fade-down"], 
         ["North-South Indian cuisines distribution", northSouthPie, "zoom-out-down"],
-        ["Hotspot of North Indian Food", northHotspot, "fade-up"], ["Hotspot of South Indian Food", southHotspot, "fade-doen"]
-    ]
+        ["Hotspot of North Indian Food", northHotspot, "fade-up"], ["Hotspot of South Indian Food", southHotspot, "fade-down"]
+      ],
+      searchResult: []
     }
   }
 
   componentDidMount = async () => {
-    axios
-    .post('http://localhost:5000/', {
-      hii: "hi"
-    })
-    .then((response) => {
-      console.log(response)
-    })
-
     AOS.init({
       duration: 1000,
       once: false
     });
+  }
+
+  fetchRestType = (event) => {
+    let searchText = event.target.value;
+    if(searchText === ''){
+      document.getElementById('search-results').style.display = 'none'
+    }
+    else if(searchText !== ''){
+      document.getElementById('search-results').style.display = 'block'
+    }
+
+    axios
+    .post("http://localhost:5000/searchResult", {
+      searchText: searchText
+    })
+    .then((response) => {
+      this.setState({
+        searchResult: response.data
+      })
+    })
   }
 
   render() {
@@ -51,9 +64,29 @@ class Stats extends Component {
           return <div className='single-graph' >
             <h2 data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">{element[0]}</h2>
             <img src={element[1]} alt="Graph plot" data-aos={element[2]} />
-            <hr style={{backgroundColor: this.props.mode == 1 ? '#1D1D1D': 'white', width: '90%'}} />
+            <hr style={{backgroundColor: this.props.mode === 1 ? '#1D1D1D': 'white', width: '90%'}} />
           </div>
         })}
+
+        <div className="search-stats">
+          <h3>Find most famous restaurants for your favourite cuisines!</h3>
+          <input 
+          style = {{backgroundColor: this.props.mode === 1 ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255,255,255,0.8)'}}
+          type="search" placeholder='Search restaurant type' onChange={this.fetchRestType} />
+
+          <div id="search-results">
+            {this.state.searchResult.map((element) => {
+              return <div 
+              style = {{
+                backgroundColor: this.props.mode === 1 ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255,255,255,0.8)',
+                color: this.props.mode === 1 ? 'white' : 'black'
+              }}
+              className='single-search-result'>
+                {element}
+              </div>
+            })}
+          </div>
+        </div>
       </div>
     )
   }
