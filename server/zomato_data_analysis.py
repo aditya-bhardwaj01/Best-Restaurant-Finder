@@ -5,7 +5,7 @@ import numpy as np
 data = pickle.load(open('most_famous_rest_type.pkl', 'rb'))
 
 def most_famous_rest_type(type):
-    casual = data[data['rest_type'].str.contains(type)].sort_values(by=['count'], ascending=False).head(5)
+    casual = data[data['rest_type'].str.contains(type)].sort_values(by=['count'], ascending=False)
     return casual
 
 def get_rest_types():

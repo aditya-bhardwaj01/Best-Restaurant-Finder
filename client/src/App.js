@@ -6,6 +6,7 @@ import LandingPage from './components/LandingPage';
 import StatsFunc from './components/Stats';
 import './App.css'
 import { useSelector } from 'react-redux';
+import Restaurant from './components/Restaurant';
 
 export default function App() {
   const mode = useSelector((state) => state.ColorModeReducer)
@@ -19,6 +20,7 @@ export default function App() {
             <Route exact path='/' element={<LandingPage />} />
             <Route exact path='/home' element={<Home />} />
             <Route exact path='/stats' element={<StatsFunc />} />
+            <Route exact path='/restaurant/:name' element={<Restaurant />} />
           </Routes>
         </Router>
       </div>
