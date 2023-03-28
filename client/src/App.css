@@ -117,64 +117,40 @@ body{
   /* border: solid red; */
 }
 
-/* ImageSlider CSS */
-/* .ImageSlider{
-  margin-top: 10px;
+#matched-search{
+  max-height: 100px;
+  overflow-y: scroll;
 }
-
-.slider{
-  position: relative;
-  height: 75vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.image-slider{
-  width: 40em;
-  height: 100%;
-  border-radius: 10px;
-}
-
-.right-arrow {
-  position: absolute;
-  top: 50%;
-  right: 32px;
-  font-size: 3rem;
-  color: black;
-  z-index: 10;
+#matched-search p{
+  padding: 7px;
   cursor: pointer;
-  user-select: none;
+  text-align: left;
+}
+#matched-search p:hover{
+  text-decoration: underline;
 }
 
-.left-arrow {
-  position: absolute;
-  top: 50%;
-  left: 32px;
-  font-size: 3rem;
-  color: black;
-  z-index: 10;
-  cursor: pointer;
-  user-select: none;
+/* Customize vertical scrollbar */
+::-webkit-scrollbar {
+  width: 10px; /* Change width of the scrollbar */
 }
 
-.slide{
-  opacity: 0;
-  transition-duration: 1s ease;
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; /* Change background color of the track */
 }
 
-.slide.active {
-  opacity: 1;
-  transition-duration: 1s;
-  transform: scale(1.08);
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Change background color of the handle */
+  border-radius: 3px;
 }
 
-@media (max-width: 576px) {
-  .image-slider{
-    height: 200px;
-    width: 500px;
-  }
-} */
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Change background color of the handle on hover */
+}
+
 
 .top-home{
   background: url('./images/home-image.jpg');
@@ -190,7 +166,7 @@ body{
 }
 
 .box-top{
-  min-width: 420px;
+  width: 420px;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 1em;
   border-radius: 10px;
@@ -244,7 +220,7 @@ body{
 
 @media (max-width: 490px) {
   .box-top{
-    width: 100px;
+    width: 300px;
   }
 }
 

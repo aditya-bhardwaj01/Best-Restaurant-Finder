@@ -4,7 +4,6 @@ import Navbar from './Navbar';
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
 
 import topRest from '../images/stats/most-famous-rest.png';
 import topRestType from '../images/stats/most-famous-rest-types.png';
@@ -143,7 +142,7 @@ class Stats extends Component {
                       <td>{element[2]}</td>
                       <td>{element[3]}</td>
                       <td>
-                        <Link to={`/restaurant/${element[2]}`}><button type="button" class="btn btn-success btn-sm">View</button></Link>
+                        <Link to={`/restaurant/${element[2]}`}><button type="button" className="btn btn-success btn-sm">View</button></Link>
                       </td>
                     </tr>
                   })

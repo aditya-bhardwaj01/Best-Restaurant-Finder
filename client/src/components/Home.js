@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import Navbar from './Navbar';
+import axios from 'axios';
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useNavigate } from 'react-router';
+
 import northIndian from '../images/north-indian.png'
 import southIndian from '../images/south-indian.jpg'
 import cafe from '../images/cafe.jpg'
 import biryani from '../images/biryani.jpg'
 import fastFood from '../images/fast-food.jpg'
 
-export default class Home extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +19,8 @@ export default class Home extends Component {
       index: 0,
       typingSpeed: 100,
       searchBy: "none",
-      location: ['Mumbai', 'Bengaluru', 'Chennai', 'Pune', 'Hyderabad', 'Mumbai', 'Bengaluru', 'Chennai', 'Pune', 'Hyderabad'],
+      searchedLocation: "",
+      location: [],
       restaurant: ['abcd', 'hdksl', 'yhdhd', 'yhfhf', 'tets', 'abcd', 'hdksl', 'yhdhd', 'yhfhf', 'tets']
     }
   }
@@ -52,6 +56,32 @@ export default class Home extends Component {
     })
   };
 
+  searchLocation = (event) => {
+    const searchText = event.target.value;
+    if(searchText === ""){
+      document.getElementById("matched-search").style.display = "none"
+    }
+    else{
+      document.getElementById("matched-search").style.display = "block"
+    }
+    
+    axios
+      .post('http://localhost:5000/searchLocation', {
+        searchText: searchText
+      })
+      .then((response) => {
+        console.log(response.data)
+        this.setState({
+          location: response.data
+        })
+      })
+  }
+
+  navigateTo = (searchedItem) => {
+    console.log(searchedItem)
+    this.props.navigate(`/location/${searchedItem}`)
+  }
+
   render() {
     return (
       <div className='Home' data-aos="fade-up">
@@ -80,7 +110,15 @@ export default class Home extends Component {
                       this.state.searchBy === "location"
                         ?
                         <div className="search-region">
-                          <input type="search" className='search' id="search-by-location" placeholder='Search Location' />
+                          <input type="search" className='search' id="search-by-location" placeholder='Search Location'
+                            onChange={this.searchLocation} />
+                          <div id="matched-search">
+                            {this.state.location.map((element) => {
+                              return <p onClick={() => this.navigateTo(element)}>
+                                {element}
+                              </p>
+                            })}
+                          </div>
                         </div>
                         :
                         <div className="search-region">
@@ -101,36 +139,36 @@ export default class Home extends Component {
         <div className="bottom-home">
           <h2>What are you looking for!</h2>
           <div className="looking-for">
-            <div class="row">
-              <div class="col">
+            <div className="row">
+              <div className="col">
                 <img src={northIndian} alt="North Indian" />
                 <p>North Indian</p>
               </div>
-              <div class="col">
+              <div className="col">
                 <img src={southIndian} alt="South Indian" />
                 <p>South Indian</p>
               </div>
-              <div class="col">
+              <div className="col">
                 <img src={cafe} alt="Cafe" />
                 <p>Cafe</p>
               </div>
-              <div class="col">
+              <div className="col">
                 <img src={biryani} alt="Biryani" />
                 <p>Biryani</p>
               </div>
-              <div class="col">
+              <div className="col">
                 <img src={fastFood} alt="Fast food" />
                 <p>Fast Food</p>
               </div>
             </div>
-            {/* <img src={northIndian} alt="North Indian" />
-            <img src={southIndian} alt="South Indian" />
-            <img src={cafe} alt="Cafe" />
-            <img src={biryani} alt="Biryani" />
-            <img src={fastFood} alt="Fast food" /> */}
           </div>
         </div>
       </div>
     )
   }
+}
+
+export default function HomeFunc(props){
+  const navigate = useNavigate()
+  return <Home navigate={navigate}></Home>
 }

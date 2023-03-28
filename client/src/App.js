@@ -1,12 +1,12 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from './components/Home';
 import LandingPage from './components/LandingPage';
-// import Navbar from './components/Navbar';
+import Home from './components/Home';
 import StatsFunc from './components/Stats';
+import Restaurant from './components/Restaurant';
+import Location from './components/Location';
 import './App.css'
 import { useSelector } from 'react-redux';
-import Restaurant from './components/Restaurant';
 
 export default function App() {
   const mode = useSelector((state) => state.ColorModeReducer)
@@ -21,6 +21,7 @@ export default function App() {
             <Route exact path='/home' element={<Home />} />
             <Route exact path='/stats' element={<StatsFunc />} />
             <Route exact path='/restaurant/:name' element={<Restaurant />} />
+            <Route exact path='/location/:location' element={<Location />} />
           </Routes>
         </Router>
       </div>

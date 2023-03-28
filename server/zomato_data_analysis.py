@@ -2,14 +2,15 @@ import pickle
 import pandas as pd
 import numpy as np
 
-data = pickle.load(open('most_famous_rest_type.pkl', 'rb'))
+famous_rest_type = pickle.load(open('./datasets/most_famous_rest_type.pkl', 'rb'))
+maindata = pickle.load(open('./datasets/maindata.pkl', 'rb'))
 
 def most_famous_rest_type(type):
-    casual = data[data['rest_type'].str.contains(type)].sort_values(by=['count'], ascending=False)
+    casual = famous_rest_type[famous_rest_type['rest_type'].str.contains(type)].sort_values(by=['count'], ascending=False)
     return casual
 
 def get_rest_types():
-    all_rest = data['rest_type'].unique()
+    all_rest = famous_rest_type['rest_type'].unique()
     rest_types = []
     for rest_type in all_rest:
         words = rest_type.split(',')
@@ -19,7 +20,13 @@ def get_rest_types():
         rest_types[i] = rest_types[i].strip()
 
     return rest_types
-
-
-# print(most_famous_rest_type('Casual Dining'))
 rest_types = set(get_rest_types())
+
+def getLocations(searchedLocation):
+    all_location = maindata['location'].unique()
+    matchedLocation = []
+    
+    for location in all_location:
+        if searchedLocation.lower() in location.lower():
+            matchedLocation.append(location)
+    return matchedLocation
