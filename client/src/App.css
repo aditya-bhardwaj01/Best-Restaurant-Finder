@@ -117,16 +117,16 @@ body{
   /* border: solid red; */
 }
 
-#matched-search{
+#matched-search-location, #matched-search-restaurant{
   max-height: 100px;
   overflow-y: scroll;
 }
-#matched-search p{
+#matched-search-location p, #matched-search-restaurant p{
   padding: 7px;
   cursor: pointer;
   text-align: left;
 }
-#matched-search p:hover{
+#matched-search-location p:hover, #matched-search-restaurant p:hover{
   text-decoration: underline;
 }
 

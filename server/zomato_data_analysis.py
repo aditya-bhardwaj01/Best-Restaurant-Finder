@@ -30,3 +30,13 @@ def getLocations(searchedLocation):
         if searchedLocation.lower() in location.lower():
             matchedLocation.append(location)
     return matchedLocation
+
+def getRestaurants(searchedRestaurant):
+    all_restaurant = maindata['name'].unique()
+    matchedRestaurant = []
+
+    for restaurant in all_restaurant:
+        if searchedRestaurant.lower() in restaurant.lower():
+            matchedRestaurant.append(restaurant)
+
+    return matchedRestaurant

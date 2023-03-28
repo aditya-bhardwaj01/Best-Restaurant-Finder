@@ -4,6 +4,7 @@ from flask_cors import CORS
 from zomato_data_analysis import rest_types
 from zomato_data_analysis import most_famous_rest_type
 from zomato_data_analysis import getLocations
+from zomato_data_analysis import getRestaurants
 
 app = Flask(__name__)
 
@@ -31,8 +32,15 @@ def showRestaurant():
 @app.route("/searchLocation", methods=['GET', 'POST'])
 def showSearchLocationResult():
     searchText = request.json["searchText"]
-    print(searchText)
     return getLocations(searchText)
+
+@app.route("/searchRestaurant", methods=["GET", "POST"])
+def showSearchRestaurantResult():
+    searchText = request.json["searchText"]
+    print(searchText)
+
+    return getRestaurants(searchText)
+
     
 
 if __name__ == "__main__":

@@ -21,7 +21,7 @@ class Home extends Component {
       searchBy: "none",
       searchedLocation: "",
       location: [],
-      restaurant: ['abcd', 'hdksl', 'yhdhd', 'yhfhf', 'tets', 'abcd', 'hdksl', 'yhdhd', 'yhfhf', 'tets']
+      restaurant: []
     }
   }
 
@@ -59,10 +59,10 @@ class Home extends Component {
   searchLocation = (event) => {
     const searchText = event.target.value;
     if(searchText === ""){
-      document.getElementById("matched-search").style.display = "none"
+      document.getElementById("matched-search-location").style.display = "none"
     }
     else{
-      document.getElementById("matched-search").style.display = "block"
+      document.getElementById("matched-search-location").style.display = "block"
     }
     
     axios
@@ -70,16 +70,42 @@ class Home extends Component {
         searchText: searchText
       })
       .then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         this.setState({
           location: response.data
         })
       })
   }
 
+  searchRestaurant = (event) => {
+    const searchText = event.target.value;
+    if(searchText === ""){
+      document.getElementById("matched-search-resturant").style.display = "none"
+    }
+    else{
+      document.getElementById("matched-search-restaurant").style.display = "block"
+    }
+
+    axios
+      .post("http://localhost:5000/searchRestaurant", {
+        searchText: searchText
+      })
+      .then((response) => {
+        console.log(response.data)
+        this.setState({
+          restaurant: response.data
+        })
+      })
+  }
+
   navigateTo = (searchedItem) => {
     console.log(searchedItem)
-    this.props.navigate(`/location/${searchedItem}`)
+    if(this.state.searchBy === 'location'){
+      this.props.navigate(`/location/${searchedItem}`)
+    }
+    else if(this.state.searchBy === 'restaurant'){
+      this.props.navigate(`/restaurant/${searchedItem}`)
+    }
   }
 
   render() {
@@ -112,7 +138,7 @@ class Home extends Component {
                         <div className="search-region">
                           <input type="search" className='search' id="search-by-location" placeholder='Search Location'
                             onChange={this.searchLocation} />
-                          <div id="matched-search">
+                          <div id="matched-search-location">
                             {this.state.location.map((element) => {
                               return <p onClick={() => this.navigateTo(element)}>
                                 {element}
@@ -122,7 +148,15 @@ class Home extends Component {
                         </div>
                         :
                         <div className="search-region">
-                          <input type="search" className='search' id="search-restaurant" placeholder='Search Restaurant' />
+                          <input type="search" className='search' id="search-restaurant" placeholder='Search Restaurant'
+                            onChange={this.searchRestaurant} />
+                          <div id="matched-search-restaurant">
+                            {this.state.restaurant.map((element) => {
+                              return <p onClick={() => this.navigateTo(element)}>
+                                {element}
+                              </p>
+                            })}
+                          </div>
                         </div>
                     }
                     <p
