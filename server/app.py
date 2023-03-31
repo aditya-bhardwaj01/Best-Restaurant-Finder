@@ -5,6 +5,11 @@ from zomato_data_analysis import rest_types
 from zomato_data_analysis import most_famous_rest_type
 from zomato_data_analysis import getLocations
 from zomato_data_analysis import getRestaurants
+from zomato_data_analysis import best_budget_restaurant
+from zomato_data_analysis import produceRatingDist
+from zomato_data_analysis import produceCuisinesDist
+from zomato_data_analysis import produceRestaurantTypeDist
+from zomato_data_analysis import produceAvgCostForRatingRange
 
 app = Flask(__name__)
 
@@ -40,6 +45,22 @@ def showSearchRestaurantResult():
     print(searchText)
 
     return getRestaurants(searchText)
+
+@app.route('/locationPage', methods=['GET', 'POST'])
+def locationDetails():
+    location = request.json["location"]
+
+    # result = best_budget_restaurant(location, 'cafe', 400)
+    # data = result.values.tolist()
+    # bestBudgetRest = json.dumps(data)
+
+    produceRatingDist(location)
+    produceCuisinesDist(location)
+    produceRestaurantTypeDist(location)
+    avgCost = produceAvgCostForRatingRange(location)
+
+    dataToSend = {'avgCost': avgCost}
+    return (dataToSend)
 
     
 

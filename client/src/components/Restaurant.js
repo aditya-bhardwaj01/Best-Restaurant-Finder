@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { useParams } from 'react-router'
 
 class Restaurant extends Component {
   render() {
     return (
-      <div>{this.props.name}</div>
+      <div className="Restaurant">
+        <Link to="/home">&larr;Go back</Link>
+      </div>
     )
   }
 }
